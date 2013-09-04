@@ -1,3 +1,4 @@
+package org.ogman.internals.tests;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -6,7 +7,7 @@ import org.ogman.internals.PublicFacing;
 
 public class PublicFacingTests {
 
-	public class Derived extends PublicFacing{
+	public class Derived extends PublicFacing {
 		public Derived(StringBuffer output) {
 			super(output);
 		}
