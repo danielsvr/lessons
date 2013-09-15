@@ -13,19 +13,15 @@ namespace Ogman.Internals
 
         void IInternalInterface.DoInternalWork()
         {
-            DoInternalWork();
+            output.Append("internal work");
         }
 
         public void DoWork()
         {
             output.Append("Public work is based on ");
-            DoInternalWork();
+            IInternalInterface internalThis = ((IInternalInterface)this);
+            internalThis.DoInternalWork();
             output.Append(".");
-        }
-
-        private void DoInternalWork()
-        {
-            output.Append("internal work");
         }
     }
 }
