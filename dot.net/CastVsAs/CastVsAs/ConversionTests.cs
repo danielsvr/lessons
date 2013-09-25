@@ -15,17 +15,22 @@ namespace CastVsAs
 		[Test]
 		public void TestCast()
 		{
-			Foo foo = new Foo{Name = "Foo"};
-			Bar bar = (Bar)(foo);
+			Foo foo = new Foo { Name = "Foo" };
+			Bar bar = (Bar)foo;
 			Assert.That(bar.Name, Is.EqualTo("Bar"));
 		}
 
 		[Test]
 		public void TestAs()
 		{
-			Foo foo = new Foo{Name = "Foo"};
-			//Bar bar = foo as Bar; //CS0039: Cannot convert type 'CastVsAs.Foo' to 'CastVsAs.Bar' via a reference conversion, boxing conversion, unboxing conversion, wrapping conversion, or null type conversion
-			Bar bar = As<Bar, Foo>(foo); // this is needed to fool the compiler and perform the as operation
+			Foo foo = new Foo { Name = "Foo" };
+			//Bar bar = foo as Bar; //CS0039: Cannot convert type 'CastVsAs.Foo' to 
+									//'CastVsAs.Bar' via a reference conversion, 
+									//boxing conversion, unboxing conversion, 
+									//wrapping conversion, or null type conversion
+									
+			Bar bar = As<Bar, Foo>(foo); // this is needed to fool the compiler and
+										 //perform the as operation
 			Assert.That(bar, Is.Null);
 		}
 		

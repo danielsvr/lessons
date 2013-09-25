@@ -7,7 +7,7 @@ using System;
 
 namespace CastVsAs
 {
-	public class Bar : Stuff
+	public class Bar
 	{
 		public string Name { get; set; }
 		
