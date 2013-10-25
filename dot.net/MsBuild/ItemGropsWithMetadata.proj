@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="PrintItems"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <MyExclusions Include="b;3"/>
+    <MyItem Include="a;b;c"/>
+    <MyItem Include="1;2;3"
+            Exclude="@(MyExclusions)"/>
+    
+    <MyTaskParameter Include="value1">
+      <Meta1>extra stuff</Meta1>
+      <MetaItem>@(MyItem)</MetaItem>
+    </MyTaskParameter>
+  </ItemGroup>
+  <Target Name="PrintItems">
+    <Message Text="Main target is executing" />
+    <CallTarget Targets="PrintMyTaskParameter" />
+  </Target>
+  <Target Name="PrintMyTaskParameter" Inputs="@(MyTaskParameter)" Outputs="%(Identity).Dummy">
+    <Message Text="Printing metadata of %(MyTaskParameter.Identity)" />
+    <Message Text="Meta1 = %(MyTaskParameter.Meta1)" />
+    <Message Text="MetaItem = %(MyTaskParameter.MetaItem)" />
+    <Message Text="Iterating each MetaItem:" />
+
+    <ItemGroup>
+      <EachItem Include="%(MyTaskParameter.MetaItem)"/>
+    </ItemGroup>
+    <Message Text="%(EachItem.Identity)"/>
+ </Target> 
+</Project>
