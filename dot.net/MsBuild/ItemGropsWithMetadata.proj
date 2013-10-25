@@ -6,12 +6,18 @@
     <MyItem Include="a;b;c"/>
     <MyItem Include="1;2;3"
             Exclude="@(MyExclusions)"/>
+    <MyItem2 Include="x;y;z"/>
+    <MyItem2 Include="0;9;8"/>
     
     <MyTaskParameter Include="value1">
       <Meta1>extra stuff</Meta1>
       <MetaItem>@(MyItem)</MetaItem>
     </MyTaskParameter>
-  </ItemGroup>
+    <MyTaskParameter Include="value2">
+      <Meta1>other stuff</Meta1>
+      <MetaItem>@(MyItem2)</MetaItem>
+    </MyTaskParameter>
+ </ItemGroup>
   <Target Name="PrintItems">
     <Message Text="Main target is executing" />
     <CallTarget Targets="PrintMyTaskParameter" />
